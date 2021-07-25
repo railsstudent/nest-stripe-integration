@@ -30,6 +30,8 @@
     "rxjs": "^6.6.6"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@nestjs/cli": "^7.6.0",
     "@nestjs/schematics": "^7.3.0",
     "@nestjs/testing": "^7.6.15",
@@ -76,6 +78,14 @@
     "yarn": "1.22.10"
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix"
+    "*.{ts,js}": [
+      "npm run lint",
+      "npm run format",
+      "git add"
+    ],
+    "*.{md,json}": [
+      "npm run format",
+      "git add"
+    ]
   }
 }
