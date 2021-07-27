@@ -22,4 +22,4 @@ async function bootstrap() {
   )
   await app.listen(3000)
 }
-bootstrap()
+bootstrap().then(() => console.log('Application started'))
