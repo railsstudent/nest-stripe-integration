@@ -4,7 +4,7 @@ import { StripeService } from './services'
 import { StripeController } from './stripe.controller'
 import Stripe from 'stripe'
 
-const StripeProvider = {
+const StripeClientProvider = {
   provide: 'StripeClient',
   inject: [ConfigService],
   useFactory: (service: ConfigService) => {
@@ -17,7 +17,7 @@ const StripeProvider = {
 }
 
 @Module({
-  providers: [StripeService, StripeProvider],
+  providers: [StripeService, StripeClientProvider],
   controllers: [StripeController],
 })
 export class StripeModule {}
