@@ -6,6 +6,7 @@ import * as morgan from 'morgan'
 import * as cors from 'cors'
 import * as express from 'express'
 import { ValidationPipe } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -20,6 +21,9 @@ async function bootstrap() {
       whitelist: true,
     }),
   )
-  await app.listen(3000)
+
+  const configService = app.get(ConfigService)
+  const port = configService.get<number>('PORT', 0)
+  await app.listen(port)
 }
 bootstrap().then(() => console.log('Application started'))

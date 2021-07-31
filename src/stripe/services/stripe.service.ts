@@ -1,12 +1,12 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common'
 import Stripe from 'stripe'
-import { CreateCustomerDto, CreditCard } from '../dtos'
+import { CreateCustomerDto, CreditCardDto } from '../dtos'
 
 @Injectable()
 export class StripeService {
   constructor(@Inject('StripeClient') private stripeClient: Stripe) {}
 
-  async createCard(customerId: string, card: CreditCard): Promise<void> {
+  async createCard(customerId: string, card: CreditCardDto): Promise<void> {
     const { number = '', cvc = '', name: cardholder = '', expYear = '', expMonth = '' } = card
     const token = await this.stripeClient.tokens.create({
       card: {

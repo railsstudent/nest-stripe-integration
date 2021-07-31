@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString, ValidateNested } from 'class-validator'
 import { Type } from 'class-transformer'
-import { CreditCard } from './credit-card'
+import { CreditCardDto } from './credit-card.dto'
 
 export class CreateCustomerDto {
   @IsNotEmpty()
@@ -16,6 +16,6 @@ export class CreateCustomerDto {
   email: string
 
   @ValidateNested()
-  @Type(() => CreditCard)
-  card: CreditCard
+  @Type(() => CreditCardDto)
+  card: CreditCardDto
 }
