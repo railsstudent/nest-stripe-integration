@@ -8,7 +8,7 @@ const StripeProvider = {
   provide: 'StripeClient',
   inject: [ConfigService],
   useFactory: (service: ConfigService) => {
-    const secretKey = service.get<string>('STRIPE_SECRET_KEY') || ''
+    const secretKey = service.get<string>('STRIPE_SECRET_KEY', '')
     const stripe = new Stripe(secretKey, {
       apiVersion: '2020-08-27',
     })
